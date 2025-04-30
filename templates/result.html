@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .result-highlight {
+            background-color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .result-text {
+            font-size: 24px;
+            color: #2c5282;
+            margin: 10px 0;
+        }
+        .confidence {
+            font-size: 18px;
+            color: #4a5568;
+        }
+        .result-container {
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-section {
+            margin: 20px 0;
+        }
+        .info-section h3 {
+            color: #2c5282;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .symptoms-list, .precaution-list {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
+        img {
+            max-width: 400px;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #2c5282;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #2a4365;
+        }
+        .disclaimer {
+            background-color: #fff5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Medical Analysis Result</h1>
+    </div>
+
+    <div class="result-highlight">
+        <div class="result-text">Analysis Result: {{ result }}</div>
+    </div>
+    
+    <div class="result-container">
+        {% if 'Parasitized' in result or 'Uninfected' in result %}
+            <div class="info-section">
+                <h3>Malaria Analysis Details</h3>
+                {% if result == 'Parasitized' %}
+                    <p>The blood sample analysis indicates the presence of malaria parasites.</p>
+                    
+                    <h3>Key Findings</h3>
+                    <ul class="symptoms-list">
+                        <li>Presence of Plasmodium parasites in red blood cells</li>
+                        <li>Possible infection stage: requires medical evaluation</li>
+                        <li>Indicates active malaria infection requiring treatment</li>
+                    </ul>
+
+                    <h3>Common Symptoms to Monitor</h3>
+                    <ul class="symptoms-list">
+                        <li>Fever and chills</li>
+                        <li>Headache and body aches</li>
+                        <li>Fatigue and weakness</li>
+                        <li>Nausea and vomiting</li>
+                        <li>Night sweats</li>
+                    </ul>
+
+                    <h3>Immediate Actions Required</h3>
+                    <ul class="precaution-list">
+                        <li>Seek emergency medical attention within 24 hours</li>
+                        <li>Complete the full course of prescribed antimalarial medication</li>
+                        <li>Monitor temperature every 4-6 hours</li>
+                        <li>Stay well-hydrated and rest</li>
+                        <li>Follow up with healthcare provider as scheduled</li>
+                    </ul>
+
+                    <h3>Long-term Management</h3>
+                    <ul class="precaution-list">
+                        <li>Complete follow-up blood tests as recommended</li>
+                        <li>Monitor for recurring symptoms</li>
+                        <li>Take preventive measures during future travel to endemic areas</li>
+                        <li>Consider long-term prophylaxis if living in endemic regions</li>
+                    </ul>
+                {% else %}
+                    <p>No malaria parasites were detected in the blood sample.</p>
+
+                    <h3>What This Means</h3>
+                    <ul class="symptoms-list">
+                        <li>Current blood sample shows no signs of malaria infection</li>
+                        <li>Regular monitoring may still be needed if symptoms persist</li>
+                        <li>Prevention measures remain important</li>
+                    </ul>
+
+                    <h3>Preventive Measures</h3>
+                    <ul class="precaution-list">
+                        <li>Use insecticide-treated bed nets every night</li>
+                        <li>Apply EPA-registered insect repellent</li>
+                        <li>Wear long-sleeved shirts and long pants in endemic areas</li>
+                        <li>Install or repair window and door screens</li>
+                        <li>Remove standing water around living areas</li>
+                        <li>Consider prophylactic medication when traveling to endemic regions</li>
+                    </ul>
+
+                    <h3>When to Seek Medical Attention</h3>
+                    <ul class="precaution-list">
+                        <li>If you develop fever, chills, or flu-like symptoms</li>
+                        <li>After returning from travel to endemic areas</li>
+                        <li>If symptoms persist despite negative results</li>
+                    </ul>
+                {% endif %}
+            </div>
+            
+        {% elif 'Tumor' in result %}
+            <div class="info-section">
+                <h3>Brain Tumor Analysis Details</h3>
+                {% if result == 'Tumor Detected' %}
+                    <p>The scan indicates the presence of abnormal tissue growth consistent with a brain tumor.</p>
+
+                    <h3>Key Observations</h3>
+                    <ul class="symptoms-list">
+                        <li>Presence of abnormal mass in brain tissue</li>
+                        <li>Further diagnostic evaluation required</li>
+                        <li>Location and size need specialist assessment</li>
+                    </ul>
+
+                    <h3>Common Symptoms to Monitor</h3>
+                    <ul class="symptoms-list">
+                        <li>Persistent headaches</li>
+                        <li>Changes in vision or hearing</li>
+                        <li>Balance problems</li>
+                        <li>Memory or cognitive changes</li>
+                        <li>Seizures</li>
+                        <li>Personality changes</li>
+                        <li>Nausea or vomiting</li>
+                    </ul>
+
+                    <h3>Immediate Next Steps</h3>
+                    <ul class="precaution-list">
+                        <li>Schedule urgent consultation with a neurologist</li>
+                        <li>Undergo additional imaging (MRI with contrast)</li>
+                        <li>Consider biopsy if recommended</li>
+                        <li>Discuss treatment options with healthcare team</li>
+                        <li>Start symptom management plan</li>
+                    </ul>
+
+                    <h3>Support Resources</h3>
+                    <ul class="precaution-list">
+                        <li>Connect with brain tumor support groups</li>
+                        <li>Consider counseling services</li>
+                        <li>Explore clinical trial options</li>
+                        <li>Create a care coordination plan</li>
+                    </ul>
+                {% else %}
+                    <p>No evidence of brain tumor was detected in the scan.</p>
+
+                    <h3>Scan Findings</h3>
+                    <ul class="symptoms-list">
+                        <li>No visible abnormal masses</li>
+                        <li>Normal brain tissue appearance</li>
+                        <li>No concerning structural changes</li>
+                    </ul>
+
+                    <h3>Preventive Health Measures</h3>
+                    <ul class="precaution-list">
+                        <li>Maintain regular medical check-ups</li>
+                        <li>Monitor any neurological symptoms</li>
+                        <li>Practice healthy lifestyle habits</li>
+                        <li>Minimize exposure to radiation</li>
+                        <li>Maintain good sleep habits</li>
+                        <li>Stay physically and mentally active</li>
+                    </ul>
+
+                    <h3>When to Seek Medical Attention</h3>
+                    <ul class="precaution-list">
+                        <li>Persistent or severe headaches</li>
+                        <li>Unexpected neurological symptoms</li>
+                        <li>Changes in vision or hearing</li>
+                        <li>Unexplained cognitive changes</li>
+                    </ul>
+                {% endif %}
+            </div>
+            
+        {% else %}
+            <div class="info-section">
+                <h3>Lung Condition Analysis</h3>
+                {% if result == 'Lung Opacity' %}
+                    <p>The chest X-ray shows areas of opacity in the lung tissue.</p>
+
+                    <h3>Clinical Significance</h3>
+                    <ul class="symptoms-list">
+                        <li>Presence of dense areas in lung tissue</li>
+                        <li>May indicate inflammation or infection</li>
+                        <li>Requires further medical evaluation</li>
+                        <li>Could be temporary or chronic condition</li>
+                    </ul>
+
+                    <h3>Symptoms to Monitor</h3>
+                    <ul class="symptoms-list">
+                        <li>Shortness of breath</li>
+                        <li>Chest pain or discomfort</li>
+                        <li>Persistent cough</li>
+                        <li>Fatigue</li>
+                        <li>Decreased exercise tolerance</li>
+                    </ul>
+
+                    <h3>Recommended Actions</h3>
+                    <ul class="precaution-list">
+                        <li>Consult with pulmonologist</li>
+                        <li>Complete pulmonary function tests</li>
+                        <li>Consider high-resolution CT scan</li>
+                        <li>Monitor oxygen saturation levels</li>
+                        <li>Follow respiratory therapy recommendations</li>
+                    </ul>
+
+                {% elif result == 'Viral Pneumonia' %}
+                    <p>The chest X-ray shows patterns consistent with viral pneumonia.</p>
+
+                    <h3>Key Findings</h3>
+                    <ul class="symptoms-list">
+                        <li>Bilateral interstitial patterns</li>
+                        <li>Ground-glass opacities</li>
+                        <li>Indicates active viral infection</li>
+                    </ul>
+
+                    <h3>Critical Symptoms to Monitor</h3>
+                    <ul class="symptoms-list">
+                        <li>Fever and chills</li>
+                        <li>Difficulty breathing</li>
+                        <li>Severe cough</li>
+                        <li>Chest pain</li>
+                        <li>Fatigue and weakness</li>
+                        <li>Decreased oxygen levels</li>
+                    </ul>
+
+                    <h3>Treatment Protocol</h3>
+                    <ul class="precaution-list">
+                        <li>Immediate medical consultation</li>
+                        <li>Rest and hydration</li>
+                        <li>Oxygen therapy if needed</li>
+                        <li>Antiviral medications if prescribed</li>
+                        <li>Regular temperature monitoring</li>
+                        <li>Follow isolation protocols</li>
+                    </ul>
+
+                {% else %}
+                    <p>The chest X-ray appears normal with no significant abnormalities.</p>
+
+                    <h3>Normal Findings</h3>
+                    <ul class="symptoms-list">
+                        <li>Clear lung fields</li>
+                        <li>Normal heart size</li>
+                        <li>No visible masses or infiltrates</li>
+                        <li>Normal bone structure</li>
+                    </ul>
+
+                    <h3>Maintaining Lung Health</h3>
+                    <ul class="precaution-list">
+                        <li>Practice regular exercise</li>
+                        <li>Avoid smoking and second-hand smoke</li>
+                        <li>Maintain good air quality</li>
+                        <li>Stay up to date with vaccinations</li>
+                        <li>Practice deep breathing exercises</li>
+                    </ul>
+
+                    <h3>Preventive Measures</h3>
+                    <ul class="precaution-list">
+                        <li>Annual health check-ups</li>
+                        <li>Regular exercise routine</li>
+                        <li>Proper hand hygiene</li>
+                        <li>Balanced nutrition</li>
+                        <li>Stress management</li>
+                    </ul>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <img src="{{ image_path }}" alt="Medical Scan Image">
+    <br>
+    <a href="/" class="back-button">Back to Main Menu</a>
+
+</body>
+</html>
